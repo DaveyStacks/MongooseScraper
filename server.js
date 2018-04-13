@@ -36,7 +36,6 @@ app.use(express.static("public"));
 // });
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI, {
-    useMongoClient: true
 });
 
 
