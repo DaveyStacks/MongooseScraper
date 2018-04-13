@@ -35,8 +35,7 @@ app.use(express.static("public"));
 //     }
 // });
 mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI, {
-});
+mongoose.connect(MONGODB_URI);
 
 
 
@@ -157,24 +156,24 @@ app.post('/articles/unsave/:id', function (req, res) {
 
 });
 
-// app.post('/articles/:id', function (req, res) {
-//     console.log(req.body);
-//     db.Note.create(req.body)
-//         .then(function (note) {
-//             return db.Article.findOneAndUpdate(
-//                 { "_id": req.params.id },
-//                 { $push: { notes: note } },
-//                 {
-//                     upsert: true, 'new': true
-//                 })
-//         })
-//         .then(function (article) {
-//             res.redirect("/articles/saved");
-//         })
-//         .catch(function (err) {
-//             res.render(err);
-//         });
-// });
+app.post('/articles/:id', function (req, res) {
+    console.log(req.body);
+    db.Note.create(req.body)
+        .then(function (note) {
+            return db.Article.findOneAndUpdate(
+                { "_id": req.params.id },
+                { $push: { notes: note } },
+                {
+                    upsert: true, 'new': true
+                })
+        })
+        .then(function (article) {
+            res.redirect("/articles/saved");
+        })
+        .catch(function (err) {
+            res.render(err);
+        });
+});
 
 app.post('/note/delete/:id', function (req, res) {
     db.Note.findOneAndRemove({
