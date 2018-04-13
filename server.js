@@ -11,11 +11,12 @@ var db = require("./models");
 // const PORT = 8080;
 var PORT = process.env.PORT || 5000;
 const app = express();
-var uristring =
-    process.env.MONGOLAB_URI ||
-    process.env.MONGOHQ_URL ||
-    'mongodb://localhost/mongoose_hw';
+// var uristring =
+//     process.env.MONGOLAB_URI ||
+//     process.env.MONGOHQ_URL ||
+//     'mongodb://localhost/mongoose_hw';
 
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoose_hw";
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const exphbs = require("express-handlebars");
@@ -26,14 +27,17 @@ app.set("view engine", "handlebars");
 app.use(express.static("public"));
 
 // mongoose.connect("mongodb://localhost/mongoose_hw");
-mongoose.connect(uristring, function (err, res) {
-    if (err) {
-        console.log('ERROR connecting to: ' + uristring + '. ' + err);
-    } else {
-        console.log('Succeeded connected to: ' + uristring);
-    }
+// mongoose.connect(uristring, function (err, res) {
+//     if (err) {
+//         console.log('ERROR connecting to: ' + uristring + '. ' + err);
+//     } else {
+//         console.log('Succeeded connected to: ' + uristring);
+//     }
+// });
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI, {
+    useMongoClient: true
 });
-
 
 
 
