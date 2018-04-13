@@ -1,0 +1,55 @@
+{{#each data}}
+    <div class="container-fluid eachstory">
+        <div class="row">
+            <h1>{{this.title}}</h2>
+        </div>
+        <div class="row">
+            <h3>{{this.abstract}}</h3>
+        </div>
+        <div class="row">
+            <h4>
+                <a href="http://www.nhl.com{{this.link}}">Learn More Here!</a>
+            </h4>
+        </div>
+        <div class="row">
+            <form action="/articles/save/{{this.id}}" method="POST" class="save">
+                <input type="submit" class="btn-danger" value=" Save Article! "></input>
+            </form>
+        </div>
+    </div>
+    <br>
+{{/each}}
+<style>
+    .eachstory,
+    .saved-article {
+        border: 5px solid red;
+    }
+
+    .saved {
+        background-color: blue;
+    }
+
+    .save {
+        float: right;
+        padding: 5px;
+    }
+
+    .unsave {
+        float: right;
+        padding: 5px;
+    }
+
+    a {
+        color: red;
+    }
+
+    h1,
+    h3,
+    h4 {
+        text-align: center;
+    }
+
+    .saved-section {
+        font-size: 80px;
+    }
+</style>

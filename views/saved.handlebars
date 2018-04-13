@@ -1,0 +1,97 @@
+<h1 class="saved-section">SAVED ARTICLES</h1>
+{{#each data}}
+    {{#if saved}}
+        <br>
+        <div class="saved-article container-fluid">
+            <div class="row">
+                <h1>{{this.title}}</h2>
+            </div>
+            <div class="row">
+                <h3>{{this.abstract}}</h3>
+            </div>
+            <div class="row">
+                <h4>
+                    <a href="http://www.nhl.com{{this.link}}">Learn More Here!</a>
+                </h4>
+            </div>
+            <div>
+                <form action="/articles/unsave/{{this.id}}" method="POST" class="unsave">
+                    <input type="submit" class="btn-danger" value="UnSave Article!"></input>
+                </form>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#mymodal{{this.id}}">Add Note</button>
+                            <div class="modal fade" id="mymodal{{this.id}}">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h3>Add a note to this article</h3>
+                                            <div class="row">
+                                                {{#each notes}}
+                                                    {{this.title}}
+                                                    <form action="/note/delete/{{this.id}}" method="POST" class="unsave">
+                                                        <input type="submit" class="btn-danger" value="Delete Note"></input>
+                                                    </form>
+                                                    <br>
+                                                    <br>
+                                                {{/each}}
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="modal-body">
+                                            <form action="/articles/{{this.id}}" method="POST" class="unsave">
+                                                <input placeholder="Title" type="text" id="note-title" name="title">
+                                                <input placeholder="Note" type="text" name="body">
+                                                <input type="submit" class="btn-danger" value="Add Note"></input>
+                                            </form>
+                                            <br>
+                                        </div>
+                                        <br>
+                                        <div class="modal-footer">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    {{/if}}
+{{/each}}
+<style>
+    .eachstory,
+    .saved-article {
+        border: 5px solid red;
+    }
+
+    .saved {
+        background-color: blue;
+    }
+
+    .save {
+        float: right;
+        padding: 5px;
+    }
+
+    .unsave {
+        float: right;
+        padding: 5px;
+    }
+
+    a {
+        color: red;
+    }
+
+    h1,
+    h3,
+    h4 {
+        text-align: center;
+    }
+
+    .saved-section {
+        font-size: 80px;
+    }
+</style>
