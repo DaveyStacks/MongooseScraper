@@ -1,4 +1,10 @@
-<h1 class="saved-section">SAVED ARTICLES</h1>
+<h1 class="saved-section">
+    SAVED ARTICLES</h1>
+<nav>
+    <form action="/articles" method="GET">
+        <input type="submit" class="btn-danger" value="GO HOME!">
+    </form>
+</nav>
 {{#each data}}
     {{#if saved}}
         <br>
@@ -61,37 +67,3 @@
         <br>
     {{/if}}
 {{/each}}
-<style>
-    .eachstory,
-    .saved-article {
-        border: 5px solid red;
-    }
-
-    .saved {
-        background-color: blue;
-    }
-
-    .save {
-        float: right;
-        padding: 5px;
-    }
-
-    .unsave {
-        float: right;
-        padding: 5px;
-    }
-
-    a {
-        color: red;
-    }
-
-    h1,
-    h3,
-    h4 {
-        text-align: center;
-    }
-
-    .saved-section {
-        font-size: 80px;
-    }
-</style>
