@@ -35,7 +35,7 @@
                                             <h3>Add a note to this article</h3>
                                             <div class="row">
                                                 {{#each notes}}
-                                                    {{this.title}} {{this.body}}
+                                                    {{this.title}} : {{this.body}}
                                                     <form action="/note/delete/{{this.id}}" method="POST" class="unsave">
                                                         <input type="submit" class="btn-danger" value="Delete Note"></input>
                                                     </form>
